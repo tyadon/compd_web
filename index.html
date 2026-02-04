@@ -310,7 +310,7 @@
             font-size: 15px;
             color: var(--text-secondary);
             max-width: 320px;
-            margin: 0 auto 48px;
+            margin: 0 auto 40px;
             line-height: 1.6;
             opacity: 0;
             transform: translateY(20px);
@@ -323,10 +323,10 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            margin-bottom: 32px;
+            margin-top: 24px;
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.55s forwards;
+            animation: fadeUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.75s forwards;
         }
 
         .live-dot {
@@ -694,7 +694,7 @@
             }
 
             .live-counter {
-                margin-bottom: 40px;
+                margin-top: 32px;
             }
 
             .live-counter-text {
@@ -799,7 +799,7 @@
             }
 
             .live-counter {
-                margin-bottom: 48px;
+                margin-top: 40px;
             }
 
             .live-counter-text {
@@ -903,11 +903,6 @@
 
                 <p class="hero-subtitle">A new way to collaborate. No DMs, no awkward asks, just opportunities that fit.</p>
 
-                <div class="live-counter">
-                    <span class="live-dot"></span>
-                    <span class="live-counter-text"><span class="live-counter-number" id="signupCount">847</span> creators and brands on the waitlist</span>
-                </div>
-
                 <div class="cta-group">
                     <button class="btn btn-primary" onclick="openModal('creator')">
                         <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -923,6 +918,11 @@
                         </svg>
                         Join as a Business
                     </button>
+                </div>
+
+                <div class="live-counter">
+                    <span class="live-dot"></span>
+                    <span class="live-counter-text"><span class="live-counter-number" id="signupCount">847</span> creators and brands on the waitlist</span>
                 </div>
 
                 <div class="divider">
