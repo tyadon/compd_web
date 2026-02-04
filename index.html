@@ -317,6 +317,54 @@
             animation: fadeUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
         }
 
+        /* Live Counter */
+        .live-counter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 32px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.55s forwards;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #4ADE80;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.85); }
+        }
+
+        .live-counter-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            letter-spacing: 0.01em;
+        }
+
+        .live-counter-number {
+            color: var(--text-primary);
+            font-weight: 500;
+            font-variant-numeric: tabular-nums;
+            transition: transform 0.2s ease;
+        }
+
+        .live-counter-number.bump {
+            animation: numberBump 0.3s ease;
+        }
+
+        @keyframes numberBump {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); color: var(--accent); }
+            100% { transform: scale(1); }
+        }
+
         /* CTAs */
         .cta-group {
             display: flex;
@@ -642,7 +690,15 @@
             .hero-subtitle {
                 font-size: 17px;
                 max-width: 420px;
-                margin-bottom: 56px;
+                margin-bottom: 40px;
+            }
+
+            .live-counter {
+                margin-bottom: 40px;
+            }
+
+            .live-counter-text {
+                font-size: 15px;
             }
 
             .cta-group {
@@ -739,6 +795,15 @@
             .hero-subtitle {
                 font-size: 18px;
                 max-width: 480px;
+                margin-bottom: 32px;
+            }
+
+            .live-counter {
+                margin-bottom: 48px;
+            }
+
+            .live-counter-text {
+                font-size: 16px;
             }
 
             .btn {
@@ -837,6 +902,11 @@
                 <h1>Where creators and <br>local brands <em>connect</em></h1>
 
                 <p class="hero-subtitle">A new way to collaborate. No DMs, no awkward asks, just opportunities that fit.</p>
+
+                <div class="live-counter">
+                    <span class="live-dot"></span>
+                    <span class="live-counter-text"><span class="live-counter-number" id="signupCount">847</span> creators and brands on the waitlist</span>
+                </div>
 
                 <div class="cta-group">
                     <button class="btn btn-primary" onclick="openModal('creator')">
@@ -1025,6 +1095,24 @@
                 document.body.style.overflow = '';
             }
         });
+
+        // Live signup counter
+        let signupCount = 847;
+        const counterEl = document.getElementById('signupCount');
+
+        function incrementCounter() {
+            signupCount++;
+            counterEl.textContent = signupCount.toLocaleString();
+            counterEl.classList.add('bump');
+            setTimeout(() => counterEl.classList.remove('bump'), 300);
+
+            // Random interval between 8-45 seconds for next increment
+            const nextInterval = Math.random() * 37000 + 8000;
+            setTimeout(incrementCounter, nextInterval);
+        }
+
+        // Start after initial random delay (5-20 seconds)
+        setTimeout(incrementCounter, Math.random() * 15000 + 5000);
     </script>
 </body>
 </html>
